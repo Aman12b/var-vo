@@ -22,7 +22,7 @@ export function setupThreeJS() {
     document.body.appendChild(renderer.domElement);
 
     const geometry = new THREE.BoxGeometry(1, 2, 1);
-    const material = new THREE.MeshBasicMaterial({color: GRASS_GREEN});
+    const material = new THREE.MeshStandardMaterial({color: GRASS_GREEN});
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
 
@@ -34,6 +34,12 @@ export function setupThreeJS() {
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -2;
     scene.add(floor);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const hemisphereLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+    scene.add(ambientLight, hemisphereLight);
+
+
 
     camera.position.y = 1;
     camera.position.z = 10;
