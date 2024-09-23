@@ -14,13 +14,16 @@ export function createCube() {
 export function createFloor() {
     const floorGeometry = new THREE.PlaneGeometry(10, 10);
     const textureLoader = new TextureLoader();
-    const floorTexture = textureLoader.load('https://threejs.org/examples/textures/terrain/grasslight-big.jpg');
+    const floorTexture = textureLoader.load('https://threejs.org/examples/textures/lava/lavatile.jpg');
+    floorTexture.wrapS = THREE.RepeatWrapping;
+    floorTexture.wrapT = THREE.RepeatWrapping;
+    floorTexture.repeat.set(4, 4); // Adjust the repeat to fit the plane size
     const floorMaterial = new THREE.MeshStandardMaterial({ map: floorTexture });
     const floor = new THREE.Mesh(floorGeometry, floorMaterial);
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -2;
     floor.receiveShadow = true;
-    return floor;
+    return { floor, floorTexture };
 }
 
 export function createShadowPlane() {

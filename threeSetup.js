@@ -11,7 +11,7 @@ export function setupThreeJS() {
     const cube = createCube();
     scene.add(cube);
 
-    const floor = createFloor();
+    const {floor, floorTexture} = createFloor();
     scene.add(floor);
 
     const plane = createShadowPlane();
@@ -25,6 +25,7 @@ export function setupThreeJS() {
     function animate() {
         cube.rotation.x += 0.05;
         cube.rotation.y += 0.05;
+        floorTexture.offset.y += 0.01; // Animate the lava texture
         renderer.render(scene, camera);
     }
 
